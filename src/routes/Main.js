@@ -37,6 +37,7 @@ class Main extends Component {
         let checkDialogPromises = []
         this.getUsers().then(users => {
             users.forEach(user => {
+                
                 checkDialogPromises.push(this.checkDialog(user.id))
             });
 
@@ -74,7 +75,6 @@ class Main extends Component {
             const supportDialogRef = dialogRef.child(supportUid);
             
             supportDialogRef.once('value', supportSnap => {
-                console.log(supportSnap.val())
                 if(supportSnap.exists()){
                     supportDialogRef.child(anotherUid).once('value', anotherUidSnap => {
                         if (anotherUidSnap.exists()) return resolve(anotherUidSnap.val()) 
@@ -98,7 +98,7 @@ class Main extends Component {
                 const profiles = snap.val(); 
                 let realUsers = [];
                 for (var key in profiles) {
-                    if (!profiles[key].hasOwnProperty('type') && !profiles[key].hasOwnProperty('deleted') && profiles[key].hasOwnProperty('id')) {
+                    if (!profiles[key].hasOwnProperty('type') && !profiles[key].hasOwnProperty('deleted') && profiles[key].hasOwnProperty('id') && profiles[key]['id'].length >0 ) {
                         realUsers.push(profiles[key])
                     }
                 }
