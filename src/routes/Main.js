@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 
 const firebase = window.firebase;
-const supportUid = 'lLblNoQ4AuesPvrgEoZ2e3tT2LD3';
+const supportUid = 'AdFvzv8yCFeqUZaV6GY6qlaNRs93';
 
 class Main extends Component {
     constructor(props, context) {
@@ -28,14 +28,6 @@ class Main extends Component {
         });
     }
 
-    checkLogin() {
-        setTimeout(() => {
-            if(!this.props.authUser ) {
-                //window.location = '/login';
-                console.log('window.location')
-            } 
-        }, 2000);
-    }
   
     handleChange(e) {
       this.setState({ value: e.target.value });
@@ -44,12 +36,14 @@ class Main extends Component {
         e.preventDefault();
         let checkDialogPromises = []
         this.getUsers().then(users => {
+            
             users.forEach(user => {
                 checkDialogPromises.push(this.checkDialog(user.id))
             });
 
             Promise.all(checkDialogPromises).then(chatKeys => {
                 chatKeys.forEach(chatKey => {
+                    
                     this.sendMessage(chatKey,this.state.value)
                 })
             })
@@ -79,8 +73,9 @@ class Main extends Component {
         return new Promise(resolve => {
             const dialogRef = firebase.database().ref('/messenger/dialogs/');
             const supportDialogRef = dialogRef.child(supportUid);
-
+            
             supportDialogRef.once('value', supportSnap => {
+                
                 if(supportSnap.exists()){
                     supportDialogRef.child(anotherUid).once('value', anotherUidSnap => {
                         if (anotherUidSnap.exists()) return resolve(anotherUidSnap.val()) 
