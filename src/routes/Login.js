@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
                     badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
                   },
                   defaultCountry: 'KG', 
-                  defaultNationalNumber: '772662836',
+                  defaultNationalNumber: '707371474',
                   loginHint: '+11234567890'
                 }
               ],
