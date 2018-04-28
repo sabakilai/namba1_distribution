@@ -9,13 +9,13 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         var config = {
-            apiKey: "AIzaSyDPI5YKDWcbK4DX_WlUH250kwZJJ2QLLIY",
-            authDomain: "nambaonedev3.firebaseapp.com",
-            databaseURL: "https://nambaonedev3.firebaseio.com",
-            projectId: "nambaonedev3",
-            storageBucket: "nambaonedev3.appspot.com",
-            messagingSenderId: "445999386944"
-        };
+            apiKey: "AIzaSyAPlRLYfaVydEgEHKGGjkdctpns8kNO7ao",
+            authDomain: "nambaoneprod.firebaseapp.com",
+            databaseURL: "https://nambaoneprod.firebaseio.com",
+            projectId: "nambaoneprod",
+            storageBucket: "nambaoneprod.appspot.com",
+            messagingSenderId: "440103203913"
+          };
         firebase.initializeApp(config);
 
     }
@@ -28,17 +28,15 @@ class LoginForm extends React.Component {
 	}
 
     render() {
-        let errorMessage;
-        if (this.errorId) errorMessage = (<Alert bsStyle="warning"><strong>Вы не Закир!</strong> Войдите в систему еще раз</Alert>)
         var uiConfig = {
             signInSuccessUrl: '/',
             signInOptions: [
                 {
                   provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
                   recaptchaParameters: {
-                    type: 'image', // 'audio'
-                    size: 'normal', // 'invisible' or 'compact'
-                    badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+                    type: 'image',
+                    size: 'normal',
+                    badge: 'bottomleft'
                   },
                   defaultCountry: 'KG', 
                   defaultNationalNumber: '707371474',
@@ -56,7 +54,6 @@ class LoginForm extends React.Component {
         ui.start('#firebaseui-auth-container', uiConfig);
         return (
             <div className="container">
-            {errorMessage}
             <div id="firebaseui-auth-container"></div>
             </div>
         )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 
 const firebase = window.firebase;
-const supportUid = 'AdFvzv8yCFeqUZaV6GY6qlaNRs93';
+const supportUid = 'rhvZpCA5HEQ13JTsMwj8uFdIxwI3';
 
 class Main extends Component {
     constructor(props, context) {
@@ -36,7 +36,6 @@ class Main extends Component {
         e.preventDefault();
         let checkDialogPromises = []
         this.getUsers().then(users => {
-            
             users.forEach(user => {
                 checkDialogPromises.push(this.checkDialog(user.id))
             });
@@ -75,7 +74,7 @@ class Main extends Component {
             const supportDialogRef = dialogRef.child(supportUid);
             
             supportDialogRef.once('value', supportSnap => {
-                
+                console.log(supportSnap.val())
                 if(supportSnap.exists()){
                     supportDialogRef.child(anotherUid).once('value', anotherUidSnap => {
                         if (anotherUidSnap.exists()) return resolve(anotherUidSnap.val()) 
